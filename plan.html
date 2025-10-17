@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Week React Developer Learning Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .week {
+            page-break-inside: avoid;
+            margin-bottom: 40px;
+        }
+
+        .week-header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .week-header h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .week-title {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: normal;
+        }
+
+        .days-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .day {
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+
+        .day:hover {
+            border-color: #0066cc;
+            background: #f0f7ff;
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 8px;
+        }
+
+        .day-title {
+            font-weight: bold;
+            color: #0066cc;
+            font-size: 16px;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #0066cc;
+        }
+
+        .day-content {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #0066cc;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-content {
+            margin-left: 8px;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .project {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+
+        .project-title {
+            font-weight: bold;
+            color: #0052a3;
+            margin-bottom: 3px;
+        }
+
+        .time-estimate {
+            display: inline-block;
+            background: #e8f4f8;
+            color: #0066cc;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 6px;
+        }
+
+        .week-summary {
+            background: #f0f7ff;
+            border-left: 4px solid #0066cc;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 2px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .week-summary strong {
+            color: #0052a3;
+        }
+
+        .print-note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 30px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .legend-item {
+            font-size: 12px;
+        }
+
+        .legend-item strong {
+            color: #0066cc;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+                box-shadow: none;
+            }
+
+            .print-note {
+                display: none;
+            }
+
+            .day {
+                page-break-inside: avoid;
+            }
+
+            .week {
+                page-break-before: auto;
+            }
+
+            header {
+                border-color: #999;
+            }
+
+            .checkbox {
+                accent-color: black;
+            }
+
+            a {
+                color: black;
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e8f4f8;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0066cc, #0052a3);
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 8-Week React Frontend Developer Learning Plan</h1>
+            <p class="subtitle">Deliberate Practice Framework | Check Off Each Day As You Progress</p>
+        </header>
+
+        <div class="print-note">
+            <strong>📋 How to Use:</strong> Print this document (one week per page recommended) and check the box ☑️ next to each day as you complete it. You can also save it digitally and use checkboxes to track progress.
+        </div>
+
+        <!-- WEEK 1 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 1: JavaScript Foundations & Setup</h2>
+                    <p class="week-title">Build Strong JavaScript Fundamentals</p>
+                </div>
+                <div>Days: 1-7</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Master JavaScript essentials, ES6+ features, async programming, and DOM manipulation. Complete all projects with proper error handling.
+                <div class="progress-bar" style="margin-top: 10px;">
+                    <div class="progress-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 1: Dev Environment</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Install Node.js, VS Code, Git<br>
+                            • Configure dev extensions<br>
+                            • GitHub account setup
+                        </div>
+                        <div class="section-title">💪 Practice</div>
+                        <div class="section-content">
+                            • 5 JavaScript problems (Codewars 8kyu)<br>
+                            • Build simple interactive page
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 2: ES6+ Essentials</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • let/const, arrow functions<br>
+                            • Template literals<br>
+                            • Destructuring
+                        </div>
+                        <div class="section-title">💪 Practice</div>
+                        <div class="section-content">
+                            • Refactor old code to ES6<br>
+                            • Array methods mastery
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Todo List</div>
+                            Using modern JavaScript array methods
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 3: Async JavaScript</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Promises & async/await<br>
+                            • Fetch API<br>
+                            • Error handling
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Weather App</div>
+                            Fetch from OpenWeatherMap API with loading states
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 4: DOM Manipulation</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Advanced DOM methods<br>
+                            • Event delegation<br>
+                            • Animations
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Quiz App</div>
+                            Interactive with score tracking & animations
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 5: Object-Oriented JS</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Classes & inheritance<br>
+                            • this keyword<br>
+                            • OOP patterns
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Tic-Tac-Toe Game</div>
+                            Using OOP principles with game state management
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 6: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">Portfolio Website</div>
+                            Responsive design • Smooth interactions • Deploy to Netlify
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 7: Review & Assessment</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">✅ Checklist</div>
+                        <div class="section-content">
+                            ☐ Review all concepts<br>
+                            ☐ Take self-assessment<br>
+                            ☐ Solve 7kyu Codewars<br>
+                            ☐ Plan Week 2
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 2 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 2: React Fundamentals</h2>
+                    <p class="week-title">Learn React Components, Props & State</p>
+                </div>
+                <div>Days: 8-14</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Master JSX, components, props, state management with hooks, and basic event handling. Build 5+ practical projects.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 8: React Setup & JSX</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Create React app (Vite)<br>
+                            • JSX syntax & rules<br>
+                            • Component basics
+                        </div>
+                        <div class="section-title">💪 Practice</div>
+                        <div class="section-content">
+                            • First React component<br>
+                            • Reusable components
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Business Card</div>
+                            Static component with props
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 9: Props & Composition</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Props passing<br>
+                            • PropTypes validation<br>
+                            • Default props
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Product List</div>
+                            Cards component with multiple props
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 10: useState & Events</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • useState hook<br>
+                            • Event handling<br>
+                            • State updates
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Todo List App</div>
+                            Add/remove items, manage state
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 11: Lists & Keys</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Rendering lists<br>
+                            • Key importance<br>
+                            • Sort & filter
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Expense Tracker</div>
+                            Add/delete/filter expenses dynamically
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 12: Conditionals & Styling</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Conditional rendering<br>
+                            • CSS modules<br>
+                            • Inline styles
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Dark/Light Switcher</div>
+                            Theme toggle with styled components
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 13: Forms & Validation</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Controlled components<br>
+                            • Form handling<br>
+                            • Input validation
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Registration Form</div>
+                            Real-time validation & error messages
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 14: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">Movie Search App</div>
+                            OMDB API • Loading states • Favorites list
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 3 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 3: Advanced React Concepts</h2>
+                    <p class="week-title">Hooks, Context, Performance & Testing</p>
+                </div>
+                <div>Days: 15-21</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Master useEffect, custom hooks, Context API, useReducer, performance optimization, and basic testing with React Testing Library.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 15: useEffect & Lifecycle</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • useEffect hook<br>
+                            • Cleanup functions<br>
+                            • Dependency arrays
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Real-time Clock</div>
+                            Timer with cleanup prevention
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 16: Custom Hooks</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Create custom hooks<br>
+                            • Hook composition<br>
+                            • Extract logic
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: useLocalStorage</div>
+                            Custom hook for persistent storage
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 17: Context API</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • React Context<br>
+                            • Provider pattern<br>
+                            • No prop drilling
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Shopping Cart</div>
+                            Global state without props drilling
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 18: useReducer</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • useReducer hook<br>
+                            • Complex state<br>
+                            • Action patterns
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Quiz App</div>
+                            Questions • Answers • Timer • Score
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 19: Performance Optimization</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • React.memo<br>
+                            • useMemo & useCallback<br>
+                            • Profiling
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Large List</div>
+                            Optimize rendering performance
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 20: Error & Testing Basics</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Error boundaries<br>
+                            • Jest basics<br>
+                            • React Testing Library
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Write: Unit Tests</div>
+                            Test form validation & components
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 21: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">Task Management (Trello)</div>
+                            Multiple boards • Drag & drop • Due dates • Global state
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 4 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 4: Routing & Advanced Patterns</h2>
+                    <p class="week-title">Multi-Page Apps & Architecture</p>
+                </div>
+                <div>Days: 22-28</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> React Router, protected routes, HOCs, compound components, code splitting, and TypeScript integration.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 22: React Router Setup</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Router configuration<br>
+                            • Routes & navigation<br>
+                            • Link vs NavLink
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Portfolio Website</div>
+                            Multi-page with smooth navigation
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 23: Dynamic Routes</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • URL parameters<br>
+                            • Query strings<br>
+                            • Nested routes
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Blog App</div>
+                            Post pages with category filtering
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 24: Protected Routes & Auth</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Route protection<br>
+                            • Auth context<br>
+                            • Login/logout flow
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Dashboard</div>
+                            Admin sections with permissions
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 25: Component Patterns</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • HOC pattern<br>
+                            • Render props<br>
+                            • Compound components
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Modal & Dropdown</div>
+                            Reusable pattern-based components
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 26: Code Splitting</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • React.lazy<br>
+                            • Suspense<br>
+                            • Route-based splitting
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Large App</div>
+                            Optimized bundle with lazy loading
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 27: TypeScript</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • TypeScript basics<br>
+                            • Typing React components<br>
+                            • Generic types
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Type-Safe Forms</div>
+                            Component library with TS
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 28: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">E-Commerce App</div>
+                            Routing • Auth • Code splitting • TypeScript • Checkout
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 5 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 5: State Management & APIs</h2>
+                    <p class="week-title">Server State, Global State & Real-Time</p>
+                </div>
+                <div>Days: 29-35</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Advanced API integration, state management libraries (Zustand/Redux), async state, React Query, WebSockets, and authentication systems.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 29: Advanced HTTP</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Axios setup<br>
+                            • Interceptors<br>
+                            • Error handling
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Weather Dashboard</div>
+                            Multiple APIs with error recovery
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 30: State Management</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Zustand or Redux<br>
+                            • Store config<br>
+                            • Actions & reducers
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Social Feed</div>
+                            Posts, likes, comments with global state
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 31: Async State</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Loading states<br>
+                            • Optimistic updates<br>
+                            • Error states
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Chat App</div>
+                            Messages with state management
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 32: Data Fetching</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • React Query/SWR<br>
+                            • Caching strategy<br>
+                            • Background refetch
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: News Aggregator</div>
+                            Infinite scroll & prefetching
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 33: Real-Time Features</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • WebSocket integration<br>
+                            • Server-Sent Events<br>
+                            • Live updates
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Live Scoreboard</div>
+                            Real-time sports updates
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 34: Authentication</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • JWT tokens<br>
+                            • Secure storage<br>
+                            • Login/register
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Auth System</div>
+                            Login, register, password reset
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 35: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">Social Dashboard</div>
+                            Auth • Real-time • State mgmt • API integration
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 6 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 6: Styling & UI Libraries</h2>
+                    <p class="week-title">Design Systems & Professional UI</p>
+                </div>
+                <div>Days: 36-42</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Advanced CSS-in-JS, Tailwind CSS, UI component libraries, animations, responsive design, and accessibility implementation.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 36: CSS-in-JS</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Styled-components<br>
+                            • Theming system<br>
+                            • Design tokens
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Design System</div>
+                            Theme-aware component library
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 37: Tailwind CSS</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Utility-first approach<br>
+                            • Responsive design<br>
+                            • Customization
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Landing Page</div>
+                            Modern responsive design with animations
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 38: UI Libraries</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Material-UI/Chakra<br>
+                            • Customization<br>
+                            • Complex layouts
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Admin Dashboard</div>
+                            Data displays, complex forms
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 39: Animations</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Framer Motion<br>
+                            • Spring animations<br>
+                            • Gestures
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Animated Portfolio</div>
+                            Page transitions & interactions
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 40: Responsive Design</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Mobile-first approach<br>
+                            • Touch interactions<br>
+                            • Breakpoints
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Mobile App UI</div>
+                            Fully responsive social app
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 41: Accessibility</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • WCAG guidelines<br>
+                            • ARIA labels<br>
+                            • Keyboard navigation
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Accessible Forms</div>
+                            Screen reader testing
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 42: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">Design System Showcase</div>
+                            Complete UI library • Animations • Accessibility • Responsive
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 7 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 7: Testing & Developer Tools</h2>
+                    <p class="week-title">Quality Assurance & Production Ready</p>
+                </div>
+                <div>Days: 43-49</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Unit testing, integration testing, performance optimization, debugging tools, CI/CD pipelines, and production monitoring.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 43: Unit Testing</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • React Testing Library<br>
+                            • Jest configuration<br>
+                            • Component tests
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Test Suite</div>
+                            80%+ coverage on project
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 44: Integration Testing</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • User workflows<br>
+                            • Mock Service Worker<br>
+                            • E2E scenarios
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: E-commerce Tests</div>
+                            Complete checkout flow testing
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 45: Performance Testing</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Lighthouse audit<br>
+                            • Bundle analysis<br>
+                            • Web Vitals
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Monitoring Dashboard</div>
+                            Track performance metrics
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 46: Dev Tools & Debugging</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • React DevTools<br>
+                            • Chrome DevTools<br>
+                            • Profiler usage
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Debug: Complex Issues</div>
+                            State debugging practice
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 47: Build Tools & Deploy</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Vite/Webpack config<br>
+                            • Environment variables<br>
+                            • Build optimization
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: CI/CD Pipeline</div>
+                            GitHub Actions automation
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 48: Monitoring</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Goals</div>
+                        <div class="section-content">
+                            • Error tracking<br>
+                            • Error boundaries<br>
+                            • Analytics
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Build: Error Reporting</div>
+                            Production monitoring setup
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 49: Integration Project</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build All Day</div>
+                        <div class="project">
+                            <div class="project-title">Production App</div>
+                            Full testing suite • Monitoring • CI/CD • Deploy
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEEK 8 -->
+        <div class="week">
+            <div class="week-header">
+                <div>
+                    <h2>Week 8: Portfolio & Professional Practice</h2>
+                    <p class="week-title">Showcase Your Skills & Land Jobs</p>
+                </div>
+                <div>Days: 50-56</div>
+            </div>
+
+            <div class="week-summary">
+                <strong>Focus:</strong> Build professional portfolio, create case studies, optimize online presence, prepare for interviews, and launch job search strategy.
+            </div>
+
+            <div class="days-container">
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 50: Portfolio Planning</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">📋 Checklist</div>
+                        <div class="section-content">
+                            ☐ Choose 3-4 best projects<br>
+                            ☐ Plan layout & content<br>
+                            ☐ Create wireframes<br>
+                            ☐ Design mobile version
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 51: Portfolio - Core</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build</div>
+                        <div class="section-content">
+                            • Hero section<br>
+                            • Project showcase<br>
+                            • Navigation & animations
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Deploy: Portfolio Site</div>
+                            Homepage with project cards
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 52: Portfolio - Advanced</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎯 Build</div>
+                        <div class="section-content">
+                            • About section<br>
+                            • Contact form<br>
+                            • Blog/case studies<br>
+                            • Theme switcher
+                        </div>
+                        <div class="project">
+                            <div class="project-title">Complete: Full Portfolio</div>
+                            Accessible & optimized
+                        </div>
+                        <div class="time-estimate">⏱️ 6 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 53: Code & Docs</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">📝 Complete</div>
+                        <div class="section-content">
+                            ☐ Code review & refactor<br>
+                            ☐ GitHub profiles cleaned<br>
+                            ☐ READMEs written<br>
+                            ☐ Case studies prepared
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 54: Professional Presence</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🔧 Setup</div>
+                        <div class="section-content">
+                            ☐ LinkedIn optimization<br>
+                            ☐ GitHub profile polish<br>
+                            ☐ Tech blog post(s)<br>
+                            ☐ Email templates
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 55: Interview Prep</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎤 Practice</div>
+                        <div class="section-content">
+                            ☐ React interview questions<br>
+                            ☐ Coding challenges<br>
+                            ☐ Live coding session<br>
+                            ☐ Record project demos
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+
+                <div class="day">
+                    <div class="day-header">
+                        <span class="day-title">Day 56: Celebration!</span>
+                        <input type="checkbox" class="checkbox">
+                    </div>
+                    <div class="day-content">
+                        <div class="section-title">🎉 Final Steps</div>
+                        <div class="section-content">
+                            ☐ Portfolio review<br>
+                            ☐ Deploy to domain<br>
+                            ☐ Self-assessment<br>
+                            ☐ Plan next specialization
+                        </div>
+                        <div class="time-estimate">⏱️ 4 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEGEND & RESOURCES -->
+        <div class="legend">
+            <div class="legend-item">
+                <strong>⏱️ Time Estimate:</strong> Daily 4-6 hour commitment (flexible)
+            </div>
+            <div class="legend-item">
+                <strong>🎯 Goals:</strong> What you'll learn each day
+            </div>
+            <div class="legend-item">
+                <strong>💪 Practice:</strong> Deliberate practice exercises
+            </div>
+            <div class="legend-item">
+                <strong>Build:</strong> Projects you'll create
+            </div>
+            <div class="legend-item">
+                <strong>✅ Total Hours:</strong> ~200 hours over 8 weeks
+            </div>
+            <div class="legend-item">
+                <strong>📊 Projects:</strong> 15+ real-world applications
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #e7f3ff; border-radius: 6px; border-left: 4px solid #0066cc;">
+            <h3 style="color: #0052a3; margin-bottom: 10px;">💡 Tips for Success</h3>
+            <ul style="list-style: none; color: #555; font-size: 14px; line-height: 1.8;">
+                <li>✓ Code every single day without exception</li>
+                <li>✓ Use the Pomodoro Technique (25 min work, 5 min break)</li>
+                <li>✓ Keep an error journal to track common mistakes</li>
+                <li>✓ Join React communities for support & feedback</li>
+                <li>✓ Build projects YOU want to use</li>
+                <li>✓ Focus on understanding over rushing through</li>
+                <li>✓ Teach concepts to rubber duck or online peers</li>
+                <li>✓ Commit code daily with descriptive messages</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
